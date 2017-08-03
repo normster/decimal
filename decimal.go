@@ -443,8 +443,11 @@ func (d Decimal) GreaterThanOrEqual(d2 Decimal) bool {
 }
 
 // Less Than (LT) returns true when d is less than d2.
-func (d Decimal) LessThan(d2 Decimal) bool {
-	return d.Cmp(d2) == -1
+func (d Decimal) LessThan(a interface{}) bool {
+	if d2, ok := a.(Decimal); ok {
+		return d.Cmp(d2) == -1
+	}
+	return false
 }
 
 // Less Than or Equal (LTE) returns true when d is less than or equal to d2.
